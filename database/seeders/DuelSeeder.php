@@ -3,15 +3,15 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\User;
+use App\Models\Duel;
 
-class UserSeeder extends Seeder
+class DuelSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        User::factory(20)->create();
+        Duel::factory(2000)->create();
     }
 }
