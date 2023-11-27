@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->string('description');
-            $table->unsignedInteger('mana')->default(0);
+            $table->unsignedInteger('wizardry')->default(0);
             $table->unsignedInteger('duels_won')->default(0);
             $table->unsignedInteger('duels_lost')->default(0);
             $table->string('password');
