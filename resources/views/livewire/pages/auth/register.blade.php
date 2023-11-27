@@ -15,6 +15,7 @@ new #[Layout('layouts.guest')] class extends Component
     public string $email = '';
     public string $password = '';
     public string $password_confirmation = '';
+    public string $description = '';
 
     /**
      * Handle an incoming registration request.
@@ -25,7 +26,12 @@ new #[Layout('layouts.guest')] class extends Component
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
+            'description' => ['required', 'string', 'max:255'],
         ]);
+
+        // Set duels_won and duels_lost to 0 by default
+        $validated['duels_won'] = 0;
+        $validated['duels_lost'] = 0;
 
         $validated['password'] = Hash::make($validated['password']);
 
@@ -44,6 +50,13 @@ new #[Layout('layouts.guest')] class extends Component
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input wire:model="name" id="name" class="block mt-1 w-full" type="text" name="name" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        </div>
+
+        <!-- Description -->
+        <div class="mt-4">
+            <x-input-label for="description" :value="__('Description')" />
+            <x-text-input wire:model="description" id="description" class="block mt-1 w-full" type="text" name="description" required autocomplete="description" />
+            <x-input-error :messages="$errors->get('description')" class="mt-2" />
         </div>
 
         <!-- Email Address -->

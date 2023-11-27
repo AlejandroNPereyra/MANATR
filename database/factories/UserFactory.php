@@ -21,11 +21,15 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'name' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'description' => $this->faker->text(),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => Hash::make('userpass123'), // Set the password field to 'userpass123'
             'remember_token' => Str::random(10),
+            'mana' => $this->faker->numberBetween(0, 100),
+            'duels_won' => $this->faker->numberBetween(0, 100),
+            'duels_lost' => $this->faker->numberBetween(0, 60)
         ];
     }
 
